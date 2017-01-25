@@ -53,11 +53,18 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Inicio', 'url' => ['/site/index']],
+            ['label' => 'Panel de Usuarios', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->identity->isAdmin],
             Yii::$app->user->isGuest ?
             ['label' => 'Iniciar sesión', 'url' => ['/user/security/login']] :
-            ['label' => 'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
-                'url' => ['/user/security/logout'],
-                'linkOptions' => ['data-method' => 'post']],
+            ['label' => Yii::$app->user->identity->username, 'url' => ['usuarios/index'], 'items' =>
+                [
+                    ['label' => 'Ver perfil', 'url' => ['/user/profile/show', 'id' => Yii::$app->user->identity->id]],
+                    ['label' => 'Editar perfil', 'url' => ['/user/settings/profile']],
+                    ['label' => 'Cerrar sesión',
+                        'url' => ['/user/security/logout'],
+                        'linkOptions' => ['data-method' => 'post']],
+                ]
+            ],
             ['label' => 'Registrarse', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
         ],
     ]);
