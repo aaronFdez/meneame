@@ -20,6 +20,19 @@ $config = [
                 'reconfirmationSubject' => 'Petición de cambio de Email',
                 'recoverySubject'       => 'Recuperación de contraseña',
             ],
+            'controllerMap' => [
+                'admin' => [
+                    'class'  => '\dektrium\user\controllers\AdminController',
+                    'layout' => '@app/views/layouts/mainAdmin',
+                ],
+                'registration' => [
+                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
+                        Yii::$app->response->redirect(array('/user/security/login'))->send();
+                        Yii::$app->end();
+                    }
+                ],
+            ],
         ],
     ],
     'components' => [
@@ -30,12 +43,16 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        //'user' => [
-        //    'class' => 'app\models\User',
-        //],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        /*
+        'user' => [
+            'class' => 'app\components\User',
+            'identityClass' => 'dektrium\user\models\User',
+            'enableAutoLogin' => true,
+        ],
+        */
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -78,6 +95,13 @@ $config = [
             ],
         ],
         */
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
     ],
     'params' => $params,
     'language' => 'es_ES',
