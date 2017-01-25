@@ -14,11 +14,11 @@ $config = [
             'cost' => 13,
             'admins' => ['admin'],
             'mailer' => [
-                'sender'                => 'joseluis.delgado@iesdonana.org', // or ['no-reply@myhost.com' => 'Sender name']
-                'welcomeSubject'        => 'Welcome subject',
-                'confirmationSubject'   => 'Confirmation subject',
-                'reconfirmationSubject' => 'Email change subject',
-                'recoverySubject'       => 'Recovery subject',
+                'sender'                => ['meneamecorreodonana@gmail.com' => 'Menéame Doñana'], // or ['no-reply@myhost.com' => 'Sender name']
+                'welcomeSubject'        => 'Bienvenido a Menéame',
+                'confirmationSubject'   => 'Mensaje de confirmación de Menéame',
+                'reconfirmationSubject' => 'Petición de cambio de Email',
+                'recoverySubject'       => 'Recuperación de contraseña',
             ],
         ],
     ],
