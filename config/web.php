@@ -51,6 +51,15 @@ $config = [
                 'encryption' => 'tls',
             ],
         ],
+        /*
+        'authClientCollection' => [
+            'class'   => \yii\authclient\Collection::className(),
+            'clients' => [
+                // here is the list of clients you want to use
+                // you can read more in the "Available clients" section
+            ],
+        ],
+        */
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
