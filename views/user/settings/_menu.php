@@ -11,6 +11,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\Menu;
+use yii\widgets\ActiveForm;
 
 /**
  * @var dektrium\user\models\User $user
@@ -22,9 +23,10 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <?= Html::img($user->profile->getAvatarUrl(24), [
+            <?= Html::img($user->profile->getImageUrl(), [
                 'class' => 'img-rounded',
                 'alt' => $user->username,
+                'style' => 'height:30px;width:30px;',
             ]) ?>
             <?= $user->username ?>
         </h3>
@@ -48,14 +50,34 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
     </div>
 
     <div class="panel-heading">
-        <h3 class="panel-title">
-            Avatar
-        </h3>
+        <h3 class="panel-title">Avatar</h3>
     </div>
-
     <div class="panel-body">
+        <?php $form = ActiveForm::begin([
+            'id' => 'account-form',
+            'options' => ['class' => 'form-horizontal'],
+            'fieldConfig' => [
+                'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
+                'labelOptions' => ['class' => 'col-lg-3 control-label'],
+            ],
+            'enableAjaxValidation' => true,
+            'enableClientValidation' => false,
+        ]); ?>
+
         <a href="#" class="thumbnail">
-            <img src="..." alt="...">
+            <?= Html::img($user->profile->getImageUrl(), [
+                'alt' => $user->username,
+            ]) ?>
         </a>
+
+        <?= $form->field($model, 'imageFile')->fileInput() ?>
+
+        <div class="form-group">
+            <div class="col-lg-offset-3 col-lg-9">
+                <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
+            </div>
+        </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
 </div>

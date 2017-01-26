@@ -40,9 +40,15 @@ AppAsset::register($this);
             ['label' => 'Administrar usuarios', 'url' => ['/user/admin/index']],
             Yii::$app->user->isGuest ?
             ['label' => 'Iniciar sesión', 'url' => ['/user/security/login']] :
-            ['label' => 'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
-                'url' => ['/user/security/logout'],
-                'linkOptions' => ['data-method' => 'post']],
+            ['label' => Yii::$app->user->identity->username, 'url' => ['usuarios/index'], 'items' =>
+                [
+                    ['label' => 'Ver perfil', 'url' => ['/user/profile/show', 'id' => Yii::$app->user->identity->id]],
+                    ['label' => 'Editar perfil', 'url' => ['/user/settings/profile']],
+                    ['label' => 'Cerrar sesión',
+                        'url' => ['/user/security/logout'],
+                        'linkOptions' => ['data-method' => 'post']],
+                ]
+            ],
             ['label' => 'Registrarse', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
         ],
     ]);
