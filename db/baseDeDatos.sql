@@ -20,6 +20,7 @@ drop table if exists noticias cascade;
         titulo        varchar(55)   not null constraint uq_noticias_titulo unique,
         cuerpo        varchar(500)  not null,
         meneos        numeric(6)    not null,
+        url           varchar(55)   not null,
         created_at    timestamptz  default current_timestamp
     );
 

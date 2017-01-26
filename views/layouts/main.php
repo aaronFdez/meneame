@@ -55,6 +55,25 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+    <div class="container">
+        <ul class="nav nav-pills nav-justified">
+            <li><a href="#"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true">
+            </span>Ciencia</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-plane" aria-hidden="true">
+            </span>Drones</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-expand" aria-hidden="true">
+            </span>Series</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-flash" aria-hidden="true">
+            </span>StratUps</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-knight" aria-hidden="true">
+            </span>VideoJuegos</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-retweet" aria-hidden="true">
+            </span>Retuits</a></li>
+        </ul>
+        <p class="navbar-text navbar-left"><a href="">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">
+            </span>ENVIAR HISTORIA</a></p>
+    </div>
 
     <div class="container">
         <?= Breadcrumbs::widget([
