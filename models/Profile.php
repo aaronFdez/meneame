@@ -164,7 +164,7 @@ class Profile extends BaseProfile
         if ($this->imageFile !== null && $this->validate()) {
             $nombre = Yii::getAlias('@uploads/') . $this->user_id . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);
-            Image::thumbnail($nombre, 120, null)
+            Image::thumbnail($nombre, 500, null)
                     ->save($nombre, ['quality' => 50]);
         }
 

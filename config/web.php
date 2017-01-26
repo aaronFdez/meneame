@@ -38,6 +38,7 @@ $config = [
                         Yii::$app->end();
                     }
                 ],
+                'settings' => 'app\controllers\user\AvatarController',
             ],
         ],
     ],
