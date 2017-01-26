@@ -6,6 +6,9 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@uploads' => 'uploads',
+    ],
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
@@ -19,6 +22,9 @@ $config = [
                 'confirmationSubject'   => 'Mensaje de confirmación de Menéame',
                 'reconfirmationSubject' => 'Petición de cambio de Email',
                 'recoverySubject'       => 'Recuperación de contraseña',
+            ],
+            'modelMap' => [
+                'Profile' => 'app\models\Profile',
             ],
             'controllerMap' => [
                 'admin' => [
