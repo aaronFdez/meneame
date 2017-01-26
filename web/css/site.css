@@ -21,6 +21,10 @@ body {
     padding-top: 20px;
 }
 
+.my-navbar {
+    background-color: orange !important;
+}
+
 .jumbotron {
     text-align: center;
     background-color: transparent;

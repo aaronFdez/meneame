@@ -17,6 +17,22 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+        .my-navbar {
+            background-color: #fc6000;
+            color: white;
+        }
+
+        .navbar-text {
+            background-color: lightgrey;
+        }
+
+        p.navbar-text a {
+            color: #fc6000;
+            background-color: lightgrey;
+        }
+
+    </style>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -30,7 +46,7 @@ AppAsset::register($this);
         'brandLabel' => 'Meneame',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'my-navbar navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
@@ -70,9 +86,9 @@ AppAsset::register($this);
             <li><a href="#"><span class="glyphicon glyphicon-retweet" aria-hidden="true">
             </span>Retuits</a></li>
         </ul>
-        <p class="navbar-text navbar-left"><a href="">
+        <p class="navbar-text navbar-left"><a href="" class="my-btn btn-lg btn-primary" role="button">
             <span class="glyphicon glyphicon-plus" aria-hidden="true">
-            </span>ENVIAR HISTORIA</a></p>
+            </span> ENVIAR HISTORIA</a></p>
     </div>
 
     <div class="container">
