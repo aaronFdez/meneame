@@ -64,13 +64,15 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             'enableClientValidation' => false,
         ]); ?>
 
-        <a href="#" class="thumbnail">
+        <a href="#" class="thumbnail" id="avatar">
             <?= Html::img($user->profile->getImageUrl(), [
                 'alt' => $user->username,
             ]) ?>
         </a>
 
-        <?= $form->field($model, 'imageFile')->fileInput() ?>
+        <div class="desactivado" style="display:none;">
+            <?= $form->field($model, 'imageFile')->fileInput() ?>
+        </div>
 
         <div class="form-group">
             <div class="col-lg-offset-3 col-lg-9">
@@ -81,3 +83,12 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
         <?php ActiveForm::end(); ?>
     </div>
 </div>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#avatar").on('click', function(e){
+        e.preventDefault();
+        $("#profile-imagefile").trigger('click');
+    });
+});
+</script>
