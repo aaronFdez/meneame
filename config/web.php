@@ -94,14 +94,16 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/view/<id:\d+>' => 'usuarios/view',
+                'usuarios/<id:\d+>' => 'usuarios/view',
+                'usuario/<id:\d+>' => 'usuarios/view',
+                'noticias/view/<id:\d+>' => 'noticias/view',
             ],
         ],
-        */
         'view' => [
             'theme' => [
                 'pathMap' => [
