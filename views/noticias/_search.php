@@ -15,7 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id_noticias') ?>
+    <?= $form->field($model, 'id_noticia') ?>
+
+    <?= $form->field($model, 'id_usuario') ?>
 
     <?= $form->field($model, 'titulo') ?>
 
@@ -23,7 +25,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'meneos') ?>
 
-    <?= $form->field($model, 'created_at') ?>
+    <?php // echo $form->field($model, 'url') ?>
+
+    <?php // echo $form->field($model, 'created_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

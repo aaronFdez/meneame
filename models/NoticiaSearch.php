@@ -18,8 +18,8 @@ class NoticiaSearch extends Noticia
     public function rules()
     {
         return [
-            [['id_noticias'], 'integer'],
-            [['titulo', 'cuerpo', 'created_at'], 'safe'],
+            [['id_noticia', 'id_usuario'], 'integer'],
+            [['titulo', 'cuerpo', 'url', 'created_at'], 'safe'],
             [['meneos'], 'number'],
         ];
     }
@@ -60,13 +60,15 @@ class NoticiaSearch extends Noticia
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_noticias' => $this->id_noticias,
+            'id_noticia' => $this->id_noticia,
+            'id_usuario' => $this->id_usuario,
             'meneos' => $this->meneos,
             'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'cuerpo', $this->cuerpo]);
+            ->andFilterWhere(['like', 'cuerpo', $this->cuerpo])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }
