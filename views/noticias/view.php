@@ -12,30 +12,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="noticia-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2><a href="#">Noticia <?= $model->titulo ?></a></h2>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_noticia], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_noticia], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id_noticia',
-            'id_usuario',
-            'titulo',
-            'cuerpo',
-            'meneos',
-            'url:url',
-            'created_at',
-        ],
-    ]) ?>
+        <p> <?= $model->cuerpo ?> </p>
+      </div>
+      <div class="panel-footer">
+          Creado por: <?= $model->id_usuario ?>
+      </div>
+    </div>
 
 </div>
