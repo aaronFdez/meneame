@@ -25,6 +25,7 @@ $config = [
             ],
             'modelMap' => [
                 'Profile' => 'app\models\Profile',
+                'User' => 'app\models\User',
             ],
             'controllerMap' => [
                 'admin' => [

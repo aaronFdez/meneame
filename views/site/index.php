@@ -1,7 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
+use app\models\NoticiaSearch;
 use yii\helpers\Html;
+use yii\widgets\ListView;
 
 $this->title = 'Menéame';
 ?>
@@ -48,6 +50,13 @@ $this->title = 'Menéame';
             <?= Html::a('Create Noticia', ['/noticias/create'], ['class' => 'btn btn-success']) ?>
         </p>
     </div>
+
+    
+    <?= ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemOptions' => ['class' => 'item'],
+        'itemView' => '/noticias/viewmain',
+]) ?>
 
 </div>
 </body>

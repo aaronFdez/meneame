@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\NoticiaSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -60,7 +61,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new NoticiaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider
+        ]);
     }
 
     /**

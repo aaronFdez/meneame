@@ -69,7 +69,7 @@ class Noticia extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdUsuario()
+    public function getUsuario()
     {
         return $this->hasOne(User::className(), ['id' => 'id_usuario'])->inverseOf('noticias');
     }

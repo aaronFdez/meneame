@@ -2,13 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\i18n\Formatter;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticia */
-
-$this->title = $model->id_noticia;
-$this->params['breadcrumbs'][] = ['label' => 'Noticias', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$time = new Formatter();
+$time = $time->asTime($model->created_at, $format = 'medium');
 ?>
 <div class="noticia-view">
 
@@ -19,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <p> <?= $model->cuerpo ?> </p>
       </div>
       <div class="panel-footer">
-          Creado por: <?= Html::a($model->usuario->username, ['/user/profile/show', 'id' => $model->usuario->id], ['class' => 'profile-link']) ?> el <?= $model->created_at ?>
+          Creado por: <?= Html::a($model->usuario->username, ['/user/profile/show', 'id' => $model->usuario->id], ['class' => 'profile-link']) ?> a las <?= $time ?>
       </div>
     </div>
 
