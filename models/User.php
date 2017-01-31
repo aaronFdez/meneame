@@ -13,4 +13,14 @@ class User extends BaseUser
     {
         return $this->hasOne(Noticia::className(), ['id_usuario' => 'id'])->inverseOf('usuarios');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAvatar()
+    {
+        $uploads = \Yii::getAlias('@uploads');
+        $ruta = "$uploads/{$this->id}.png";
+        return file_exists($ruta) ? "/$ruta" : "/$uploads/default.png";
+    }
 }

@@ -10,6 +10,12 @@ $config = [
         '@uploads' => 'uploads',
     ],
     'modules' => [
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
+            'controllerMap' => [
+                'comments' => 'yii2mod\comments\controllers\ManageController',
+            ],
+        ],
         'user' => [
             'class' => 'dektrium\user\Module',
             'enableUnconfirmedLogin' => true,
@@ -53,6 +59,15 @@ $config = [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii2mod.comments' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/comments/messages',
+                ],
+                // ...
+            ],
         ],
         /*
         'user' => [
