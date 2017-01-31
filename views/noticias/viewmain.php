@@ -13,12 +13,13 @@ $time = $time->asTime($model->created_at, $format = 'medium');
 
     <div class="panel panel-default">
       <div class="panel-body">
-        <h2><a href="#">Noticia <?= $model->titulo ?></a></h2>
+        <h2><a href="<?= $model->url ?>"><?= $model->titulo ?></a></h2>
 
         <p> <?= $model->cuerpo ?> </p>
       </div>
       <div class="panel-footer">
-          Creado por: <?= Html::a($model->usuario->username, ['/user/profile/show', 'id' => $model->usuario->id], ['class' => 'profile-link']) ?> a las <?= $time ?>
+        <?= Html::a('Comentarios', ['/noticias/view', 'id' => $model->id_noticia], ['class' => 'btn btn-default']) ?>
+        Creado por: <?= Html::a($model->usuario->username, ['/user/profile/show', 'id' => $model->usuario->id], ['class' => 'profile-link']) ?> a las <?= $time ?>
       </div>
     </div>
 

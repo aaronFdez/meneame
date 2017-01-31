@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel panel-default">
       <div class="panel-body">
-        <h2><a href="#">Noticia <?= $model->titulo ?></a></h2>
+        <h2><a href="<?= $model->url ?>"><?= $model->titulo ?></a></h2>
 
         <p> <?= $model->cuerpo ?> </p>
       </div>
