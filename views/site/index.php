@@ -51,11 +51,12 @@ $this->title = 'Menéame';
         </p>
     </div>
 
-    
+
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => '/noticias/viewmain',
+        'layout' => "{items}\n{pager}",
 ]) ?>
 
 </div>
