@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
       ],
           // your own config for comments ListView, for example:
          'listViewConfig' => [
-             'emptyText' => Yii::t('app', 'No comments found.'),
+             'emptyText' => Yii::t('app', 'No hay comentarios.'),
          ]
 ]); ?>
 
