@@ -56,6 +56,10 @@ $this->params['breadcrumbs'][] = $this->title;
               'pageSize' => 10
           ],
       ],
+          // your own config for comments ListView, for example:
+         'listViewConfig' => [
+             'emptyText' => Yii::t('app', 'No comments found.'),
+         ]
 ]); ?>
 
 </div>
