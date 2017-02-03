@@ -36,7 +36,6 @@ $config = [
             'controllerMap' => [
                 'admin' => [
                     'class'  => '\dektrium\user\controllers\AdminController',
-                    'layout' => '@app/views/layouts/mainAdmin',
                 ],
                 'registration' => [
                     'class' => \dektrium\user\controllers\RegistrationController::className(),

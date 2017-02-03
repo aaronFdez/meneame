@@ -52,8 +52,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Inicio', 'url' => ['/site/index']],
-            ['label' => 'Panel de Usuarios', 'url' => ['/user/admin/index'], 'visible' => (Yii::$app->user->isGuest) ? '' : Yii::$app->user->identity->isAdmin],
+            ['label' => 'Administrar usuarios', 'url' => ['/user/admin/index'], 'visible' => (Yii::$app->user->isGuest) ? '' : Yii::$app->user->identity->isAdmin],
+            ['label' => 'Administrar noticias', 'url' => ['/noticias/index'], 'visible' => (Yii::$app->user->isGuest) ? '' : Yii::$app->user->identity->isAdmin],
             Yii::$app->user->isGuest ?
             ['label' => 'Iniciar sesión', 'url' => ['/user/security/login']] :
             ['label' => Yii::$app->user->identity->username, 'url' => ['usuarios/index'], 'items' =>
