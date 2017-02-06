@@ -1,6 +1,10 @@
 <?php
+
+namespace app\tests;
+
 class LoginFormCest
 {
+    //se ejecuta SIEMPRE antes de cada prueba
     public function _before(\FunctionalTester $I)
     {
         $I->amOnRoute('site/login');
@@ -8,14 +12,13 @@ class LoginFormCest
 
     public function openLoginPage(\FunctionalTester $I)
     {
-        $I->see('Login', 'h1');
-
+        $I->see('Login', 'h1');// Sale la palabra login con una etiqueta h1
     }
 
-    // demonstrates `amLoggedInAs` method
+    // usa `amLoggedInAs` method y el id del usuario
     public function internalLoginById(\FunctionalTester $I)
     {
-        $I->amLoggedInAs(100);
+        $I->amLoggedInAs(100);// Usa id
         $I->amOnPage('/');
         $I->see('Logout (admin)');
     }
@@ -23,16 +26,16 @@ class LoginFormCest
     // demonstrates `amLoggedInAs` method
     public function internalLoginByInstance(\FunctionalTester $I)
     {
-        $I->amLoggedInAs(\app\models\User::findByUsername('admin'));
+        $I->amLoggedInAs(\app\models\User::findByUsername('admin')); // usa instancia de app\model\user
         $I->amOnPage('/');
         $I->see('Logout (admin)');
     }
 
     public function loginWithEmptyCredentials(\FunctionalTester $I)
     {
-        $I->submitForm('#login-form', []);
-        $I->expectTo('see validations errors');
-        $I->see('Username cannot be blank.');
+        $I->submitForm('#login-form', []);// usa el id de la etiqueta form '#login-form' y mete un array vacio
+        $I->expectTo('see validations errors');// se espera ver errores de validacion
+        $I->see('Username cannot be blank.'); // si se cambia a español se cambia las frases
         $I->see('Password cannot be blank.');
     }
 
@@ -53,6 +56,6 @@ class LoginFormCest
             'LoginForm[password]' => 'admin',
         ]);
         $I->see('Logout (admin)');
-        $I->dontSeeElement('form#login-form');              
+        $I->dontSeeElement('form#login-form');// no veo el formulario ya que te has logueao
     }
 }
