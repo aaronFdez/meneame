@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://iesdonana-meneame.herokuapp.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ */
 
 namespace app\controllers;
 
@@ -10,6 +15,11 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+/**
+ * SiteController gestiona las acciones realizadas en la página principal.
+ *
+ * @author Jose Luis Delgado <joludelgar@gmail.com>
+ */
 class SiteController extends Controller
 {
     /**
@@ -55,7 +65,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Muestra la página de inicio.
      *
      * @return string
      */
@@ -74,6 +84,7 @@ class SiteController extends Controller
      *
      * @return string
      */
+    /*
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -88,24 +99,28 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    */
 
     /**
      * Logout action.
      *
      * @return string
      */
+    /*
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
+    */
 
     /**
      * Displays contact page.
      *
      * @return string
      */
+    /*
     public function actionContact()
     {
         $model = new ContactForm();
@@ -118,14 +133,17 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    */
 
     /**
      * Displays about page.
      *
      * @return string
      */
+    /*
     public function actionAbout()
     {
         return $this->render('about');
     }
+    */
 }

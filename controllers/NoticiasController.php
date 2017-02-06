@@ -16,15 +16,15 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
- * Noti
+ * NoticiasController gestiona las noticias (crea, modifica, elimina,
+ * muestra y busca).
  *
  * @author Jose Luis Delgado <joludelgar@gmail.com>
- * @since 1.0
  */
 class NoticiasController extends Controller
 {
     /**
-     * @inheritdoc
+     * Establece las reglas de acceso a las funciones de la aplicación.
      */
     public function behaviors()
     {
@@ -62,7 +62,7 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Lists all Noticia models.
+     * Lista todos los modelos de Noticia.
      * @return mixed
      */
     public function actionIndex()
@@ -77,8 +77,8 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Displays a single Noticia model.
-     * @param integer $id
+     * Muestra un modelo de Noticia.
+     * @param integer $id el 'id' de la noticia.
      * @return mixed
      */
     public function actionView($id)
@@ -89,8 +89,8 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Creates a new Noticia model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo modelo de Noticia
+     * Si la creación se realiza correctamente, el navegador será redirigido a la página 'view'.
      * @return mixed
      */
     public function actionCreate()
@@ -107,9 +107,9 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Updates an existing Noticia model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * Modifica un modelo de Noticia ya existente.
+     * Si la modificación se realiza correctamente, el navegador será redirigido a la página 'view'.
+     * @param integer $id el 'id' de la noticia.
      * @return mixed
      */
     public function actionUpdate($id)
@@ -126,9 +126,9 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Deletes an existing Noticia model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * Elimina un modelo de Noticia ya existente.
+     * Si la eliminación se realiza correctamente, el navegador será redirigido a la página 'index'.
+     * @param integer $id el 'id' de la noticia.
      * @return mixed
      */
     public function actionDelete($id)
@@ -139,11 +139,11 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Finds the Noticia model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Noticia the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Busca un modelo de Noticia basandose en el valor de su clave primaria.
+     * Si no se encuentra el modelo, se lanzará una excepción HTTP 404.
+     * @param integer $id el 'id' de la noticia.
+     * @return Noticia el modelo encontrado.
+     * @throws NotFoundHttpException si el modelo no ha sido encontrado.
      */
     protected function findModel($id)
     {
