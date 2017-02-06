@@ -81,6 +81,11 @@ class Noticia extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'id_usuario'])->inverseOf('noticias');
     }
 
+    /**
+     * Esta funcion se ejecuta antes guardar la noticia
+     * @param  [type] $insert [description]
+     * @return [type]         [description]
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

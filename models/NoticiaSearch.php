@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Noticia;
 
 /**
- * NoticiaSearch represents the model behind the search form about `app\models\Noticia`.
+ * NoticiaSearch modelo para buscar noticas search form about `app\models\Noticia`.
  */
 class NoticiaSearch extends Noticia
 {
