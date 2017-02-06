@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "noticias".
+ * Este es el modelo de clase de la tabla "noticias"
  *
  * @property integer $id_noticia
  * @property integer $id_usuario
@@ -21,7 +21,8 @@ use Yii;
 class Noticia extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * tableName funcion estatica
+     * @return tabla devuelve la tabla noticias
      */
     public static function tableName()
     {
@@ -29,7 +30,8 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * [rules reglas de validacion del modelo]
+     * @return array el array contiene que validacion tiene cada campo
      */
     public function rules()
     {
@@ -43,7 +45,8 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * attributeLabels asigna una cadena a cada atributo para mostrarse]
+     * @return array a atributos se le asigna una cadena
      */
     public function attributeLabels()
     {
@@ -59,7 +62,10 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     *Devuelve una tabla con los comentarios relacionados con
+     * la noticia(id_noticia)
+     * @return yii\db\ActiveQuery devuelve una tabla con los comentarios
+     * relacionados con la noticia(id_noticia)
      */
     public function getComentariosNoticias()
     {
@@ -67,7 +73,8 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Devuelve el usuario usando id
+     * @return yii\db\ActiveQuery objeto usuario o null
      */
     public function getUsuario()
     {
