@@ -13,6 +13,7 @@ use Yii;
  * @property string $cuerpo
  * @property string $meneos
  * @property string $url
+ * @property integer $id_categoria
  * @property string $created_at
  *
  * @property ComentariosNoticias[] $comentariosNoticias
@@ -37,11 +38,14 @@ class Noticia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id_usuario', 'id_categoria'], 'integer'],
             [['titulo', 'cuerpo', 'url'], 'required'],
+            [['meneos'], 'number'],
             [['created_at'], 'safe'],
             [['titulo'], 'string', 'max' => 55],
             [['cuerpo'], 'string', 'max' => 500],
             [['url'], 'string', 'max' => 200],
+            [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_usuario' => 'id']],
         ];
     }
 
@@ -58,6 +62,7 @@ class Noticia extends \yii\db\ActiveRecord
             'cuerpo' => 'Cuerpo',
             'meneos' => 'Meneos',
             'url' => 'Url',
+            'id_categoria' => 'Id Categoria',
             'created_at' => 'Created At',
         ];
     }
@@ -77,26 +82,8 @@ class Noticia extends \yii\db\ActiveRecord
      * Devuelve el usuario usando id
      * @return yii\db\ActiveQuery objeto usuario o null
      */
-    public function getUsuario()
+    public function getIdUsuario()
     {
         return $this->hasOne(User::className(), ['id' => 'id_usuario'])->inverseOf('noticias');
-    }
-
-    /**
-     * Esta funcion se ejecuta antes guardar la noticia
-     * @param  [type] $insert [description]
-     * @return [type]         [description]
-     */
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if ($insert) {
-                $this->id_usuario = Yii::$app->user->identity->id;
-                $this->meneos = 0;
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 }

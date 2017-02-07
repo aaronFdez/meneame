@@ -22,7 +22,7 @@ class NoticiaSearch extends Noticia
          * @return array el array contiene que validacion tiene cada campo
          */
         return [
-            [['id_noticia', 'id_usuario'], 'integer'],
+            [['id_noticia', 'id_usuario', 'id_categoria'], 'integer'],
             [['titulo', 'cuerpo', 'url', 'created_at'], 'safe'],
             [['meneos'], 'number'],
         ];
@@ -52,11 +52,6 @@ class NoticiaSearch extends Noticia
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                ]
-            ],
         ]);
 
         $this->load($params);
@@ -70,6 +65,7 @@ class NoticiaSearch extends Noticia
             'id_noticia' => $this->id_noticia,
             'id_usuario' => $this->id_usuario,
             'meneos' => $this->meneos,
+            'id_categoria' => $this->id_categoria,
             'created_at' => $this->created_at,
         ]);
 

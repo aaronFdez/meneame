@@ -9,6 +9,9 @@ create table noticias (
     cuerpo        varchar(500)  not null,
     meneos        numeric(6)    default 0,
     url           varchar(200)  not null,
+    id_categoria  bigint        constraint fk_noticias_categorias_categoria
+                                references categorias (id_categoria)
+                                on delete no action on update cascade,
     created_at    timestamptz   default current_timestamp
 );
 
@@ -23,18 +26,6 @@ create table categorias (
 );
 
 create index idx_categorias_nombre on categorias (nombre);
-
-drop table if exists noticias_categorias cascade;
-
-create table noticias_categorias (
-    id_noticia_categoria  bigserial     constraint pk_noticias_categorias primary key,
-    id_noticia            bigint        constraint fk_noticias_categorias_noticias
-                                        references noticias (id_noticia)
-                                        on delete no action on update cascade,
-    id_categoria          bigint        constraint fk_noticias_categorias_categoria
-                                        references categorias (id_categoria)
-                                        on delete no action on update cascade
-);
 
 drop table if exists comentarios cascade;
 
