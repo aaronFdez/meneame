@@ -38,7 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p> <?= $model->cuerpo ?> </p>
       </div>
-      <div class="panel-footer">
           <div class="panel-footer">
                  <?= Html::a('Comentarios', ['/noticias/view', 'id' => $model->id_noticia], ['class' => 'btn btn-default']) ?>
              <span class="glyphicon glyphicon-option-vertical"></span>
