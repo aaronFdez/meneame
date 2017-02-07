@@ -15,6 +15,27 @@ create table noticias (
 create index idx_noticias_titulo on noticias (titulo);
 create index idx_noticias_create_at on noticias (create_at);
 
+drop table if exists categorias cascade;
+
+create table categorias (
+    id_categoria  bigserial     constraint pk_categorias primary key,
+    nombre        varchar(20)   not null
+);
+
+create index idx_categorias_nombre on categorias (nombre);
+
+drop table if exists noticias_categorias cascade;
+
+create table noticias_categorias (
+    id_noticia_categoria  bigserial     constraint pk_noticias_categorias primary key,
+    id_noticia            bigint        constraint fk_noticias_categorias_noticias
+                                        references noticias (id_noticia)
+                                        on delete no action on update cascade,
+    id_categoria          bigint        constraint fk_noticias_categorias_categoria
+                                        references categorias (id_categoria)
+                                        on delete no action on update cascade
+);
+
 drop table if exists comentarios cascade;
 
 create table comentarios (
@@ -30,7 +51,7 @@ create table comentarios (
 create index idx_comentarios_votos on comentarios (votos);
 create index idx_comentarios_create_at on comentarios (create_at);
 
-drop table if exists come_noti cascade;
+drop table if exists comentarios_noticias cascade;
 
 create table comentarios_noticias (
     id_comentario_noticia   bigserial constraint pk_comentarios_noticias primary key,

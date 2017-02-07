@@ -15,12 +15,12 @@ $this->title = 'Menéame';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style media="screen">
         .my-navbar {
-            background-color: #fc6000;
+            background-color: #ff5c00;
             color: white;
         }
 
         p.navbar-text a {
-            color: #fc6000;
+            color: #ff5c00;
             background-color: lightgrey;
         }
 
@@ -31,7 +31,7 @@ $this->title = 'Menéame';
 
 <div class="site-index">
 
-    <div class="container">
+    <div class="container categorias">
         <ul class="nav nav-pills nav-justified">
             <li><a href="#"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true">
             </span> Ciencia</a></li>
@@ -46,8 +46,10 @@ $this->title = 'Menéame';
             <li><a href="#"><span class="glyphicon glyphicon-retweet" aria-hidden="true">
             </span> Retuits</a></li>
         </ul>
+    </div>
+    <div class="container">
         <p class="navbar-text navbar-left">
-            <?= Html::a('Create Noticia', ['/noticias/create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('+ Enviar historia', ['/noticias/create'], ['class' => 'btn btn-warning']) ?>
         </p>
     </div>
 

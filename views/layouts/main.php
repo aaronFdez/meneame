@@ -19,17 +19,31 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style media="screen">
         .my-navbar {
-            background-color: #fc6000;
+            background-color: #ff5c00;
             color: white;
         }
 
-        .navbar-text {
+        .my-navbar a {
+            color: white;
+        }
+
+        .navbar-text .btn {
             background-color: lightgrey;
         }
 
         p.navbar-text a {
-            color: #fc6000;
+            color: #ff5c00;
             background-color: lightgrey;
+        }
+
+        .site-index .categorias {
+            background-color: black;
+            margin: -20px 0 auto 0 !important;
+            width: 100%;
+        }
+
+        .nav-pills li a {
+            color: white;
         }
 
     </style>
