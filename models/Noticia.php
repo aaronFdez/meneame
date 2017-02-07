@@ -62,7 +62,7 @@ class Noticia extends \yii\db\ActiveRecord
             'cuerpo' => 'Cuerpo',
             'meneos' => 'Meneos',
             'url' => 'Url',
-            'id_categoria' => 'Id Categoria',
+            'id_categoria' => 'Categoría',
             'created_at' => 'Created At',
         ];
     }
@@ -82,8 +82,33 @@ class Noticia extends \yii\db\ActiveRecord
      * Devuelve el usuario usando id
      * @return yii\db\ActiveQuery objeto usuario o null
      */
-    public function getIdUsuario()
+    public function getUsuario()
     {
         return $this->hasOne(User::className(), ['id' => 'id_usuario'])->inverseOf('noticias');
+    }
+
+    /**
+     *
+     */
+    public function getCategoria()
+    {
+        return $this->hasOne(Categoria::className(), ['id_categoria' => 'id_categoria'])->inverseOf('noticias');
+    }
+
+    /**
+     * Esta funcion se ejecuta antes guardar la noticia
+     * @param  [type] $insert [description]
+     * @return [type]         [description]
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->id_usuario = Yii::$app->user->identity->id;
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

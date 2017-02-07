@@ -51,4 +51,12 @@ class Categoria extends \yii\db\ActiveRecord
     {
         return $this->hasMany(NoticiasCategorias::className(), ['id_categoria' => 'id_categoria'])->inverseOf('idCategoria');
     }
+
+    /** Devuleve las noticias de un usuario identificado por id
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNoticias()
+    {
+        return $this->hasOne(Noticia::className(), ['id_categoria' => 'id_categoria'])->inverseOf('categorias');
+    }
 }

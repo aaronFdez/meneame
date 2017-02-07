@@ -9,6 +9,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Noticia;
+use app\models\Categoria;
 use app\models\NoticiaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -100,8 +101,10 @@ class NoticiasController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_noticia]);
         } else {
+            $categorias = Categoria::find()->select('nombre, id_categoria')->indexBy('id_categoria')->column();
             return $this->render('create', [
                 'model' => $model,
+                'categorias' => $categorias,
             ]);
         }
     }

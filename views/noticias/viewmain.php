@@ -6,8 +6,9 @@ use yii\i18n\Formatter;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticia */
-$time = new Formatter();
-$time = $time->asTime($model->created_at, $format = 'medium');
+$formateo = new Formatter();
+$time = $formateo->asTime($model->created_at, $format = 'medium');
+$date = $formateo->asDate($model->created_at, $format = 'medium');
 ?>
 <div class="noticia-view">
 
@@ -18,8 +19,12 @@ $time = $time->asTime($model->created_at, $format = 'medium');
         <p> <?= $model->cuerpo ?> </p>
       </div>
       <div class="panel-footer">
-        <?= Html::a('Comentarios', ['/noticias/view', 'id' => $model->id_noticia], ['class' => 'btn btn-default']) ?>
-        Creado por: <?= Html::a($model->usuario->username, ['/user/profile/show', 'id' => $model->usuario->id], ['class' => 'profile-link']) ?> a las <?= $time ?>
+             <?= Html::a('Comentarios', ['/noticias/view', 'id' => $model->id_noticia], ['class' => 'btn btn-default']) ?>
+         <span class="glyphicon glyphicon-option-vertical"></span>
+             Creado por: <?= Html::a($model->usuario->username, ['/user/profile/show', 'id' => $model->usuario->id],
+             ['class' => 'profile-link']) ?> a las <span data-toggle="tooltip" data-placement="top" title="<?= $date ?>"> <?= $time ?> </span>
+         <span class="glyphicon glyphicon-option-vertical"> </span>
+             Categoría: <?= Html::a($model->categoria->nombre, ['/noticias/search', 'id' => $model->categoria->id_categoria]) ?>
       </div>
     </div>
 

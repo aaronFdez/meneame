@@ -3,14 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$categorias = [
-    'Ciencia',
-    'Drones',
-    'Series',
-    'StratUps',
-    'Videojuegos',
-    'Retuits'
-];
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticia */
 /* @var $form yii\widgets\ActiveForm */
@@ -27,7 +19,9 @@ $categorias = [
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true, 'pattern' => "^(http|https):\/\/(w{3}\.|)[a-zA-Z0-9]+\.[a-z]{1,3}$"]) ?>
 
-    <?= $form->field($model, 'categorias')->dropDownList($categorias) ?>
+    <?= $form->field($model, 'id_categoria')->dropDownList($categorias,
+    ['prompt' => 'Selecciona una categoría...']
+    ); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
