@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 class User extends BaseUser
 {
-    /**
+    /** Devuleve las noticias de un usuario identificado por id
      * @return \yii\db\ActiveQuery
      */
     public function getNoticias()
@@ -15,7 +15,7 @@ class User extends BaseUser
         return $this->hasOne(Noticia::className(), ['id_usuario' => 'id'])->inverseOf('usuarios');
     }
 
-    /**
+    /**Devuleve el nombre de  usuario identificado segun id
      * @return \yii\db\ActiveQuery
      */
     public function getUsername()
@@ -23,7 +23,7 @@ class User extends BaseUser
         return Html::a($this->username, ['/user/profile/show', 'id' => $this->id], ['class' => 'profile-link']);
     }
 
-    /**
+    /**Devuleve el avatar de un usuario identificado por id
      * @return \yii\db\ActiveQuery
      */
     public function getAvatar()
