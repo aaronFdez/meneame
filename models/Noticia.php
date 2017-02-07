@@ -20,6 +20,7 @@ use Yii;
  */
 class Noticia extends \yii\db\ActiveRecord
 {
+    public $categorias;
     /**
      * tableName funcion estatica
      * @return tabla devuelve la tabla noticias
