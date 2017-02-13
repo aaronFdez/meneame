@@ -24,6 +24,25 @@ $this->title = 'Menéame';
             background-color: lightgrey;
         }
 
+        #meneos {
+            text-align: center;
+            background-color: lightgray;
+            border: 1px black solid;
+            height: 80px;
+        }
+
+        #meneos p {
+            padding: 0;
+            margin: 0;
+        }
+
+        #meneos button {
+            background-color: #ff5c00;
+            color: white;
+            width: 100%;
+            border: 2px solid #ff9f69;
+        }
+
     </style>
 </head>
 
