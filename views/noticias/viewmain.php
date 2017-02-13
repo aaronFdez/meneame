@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
 use yii\i18n\Formatter;
 
 /* @var $this yii\web\View */
@@ -9,8 +9,33 @@ use yii\i18n\Formatter;
 $formateo = new Formatter();
 $time = $formateo->asTime($model->created_at, $format = 'medium');
 $date = $formateo->asDate($model->created_at, $format = 'medium');
+
+$url = Url::to(['noticias/meneos']);
+$js = <<<EOT
+    $('.bMeneos').click(function() {
+        $.ajax({
+            method: 'POST',
+            url: '$url',
+            context: this,
+            data: {
+                id: $(this).val()
+            },
+            success: function (data, status, event) {
+                $(this).html("¡hecho!");
+                $(this).prev().prev().html(data);
+            }
+        });
+    });
+EOT;
+$this->registerJs($js);
 ?>
 <div class="noticia-view">
+
+    <div class="meneos">
+        <p><?= $model->numeroMeneos ?></p>
+        <p>meneos</p>
+        <button type="button" name="button" class="bMeneos" value="<?= $model->id_noticia ?>">menéalo</button>
+    </div>
 
     <div class="panel panel-default">
       <div class="panel-body">

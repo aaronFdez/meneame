@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Noticia;
 
 /**
- * NoticiaSearch modelo para buscar noticas  `app\models\Noticia`.
+ * NoticiaSearch represents the model behind the search form about `app\models\Noticia`.
  */
 class NoticiaSearch extends Noticia
 {
@@ -17,32 +17,27 @@ class NoticiaSearch extends Noticia
      */
     public function rules()
     {
-        /**
-         * [rules reglas de validacion del modelo]
-         * @return array el array contiene que validacion tiene cada campo
-         */
         return [
             [['id_noticia', 'id_usuario', 'id_categoria'], 'integer'],
             [['titulo', 'cuerpo', 'url', 'created_at'], 'safe'],
-            [['meneos'], 'number'],
         ];
     }
 
     /**
-     * Devuelve el escenario que tiene el modelo
-     * @return variable estática con el escenario correspondiente
+     * @inheritdoc
      */
     public function scenarios()
     {
+        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
     /**
-     * Crea un objeto data provider tras la busqueda
+     * Creates data provider instance with search query applied
      *
-     * @param array $params con los parametros de valicacion
+     * @param array $params
      *
-     * @return ActiveDataProvider con el resultado de la busqueda
+     * @return ActiveDataProvider
      */
     public function search($params)
     {
@@ -62,14 +57,15 @@ class NoticiaSearch extends Noticia
         $this->load($params);
 
         if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
             return $dataProvider;
         }
 
-        // condiciones del filtrado del grid
+        // grid filtering conditions
         $query->andFilterWhere([
             'id_noticia' => $this->id_noticia,
             'id_usuario' => $this->id_usuario,
-            'meneos' => $this->meneos,
             'id_categoria' => $this->id_categoria,
             'created_at' => $this->created_at,
         ]);

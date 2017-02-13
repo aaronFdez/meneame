@@ -5,26 +5,25 @@ namespace app\models;
 use Yii;
 
 /**
- * Este es el modelo de clase de la tabla "noticias"
+ * This is the model class for table "noticias".
  *
  * @property integer $id_noticia
  * @property integer $id_usuario
  * @property string $titulo
  * @property string $cuerpo
- * @property string $meneos
  * @property string $url
  * @property integer $id_categoria
  * @property string $created_at
  *
  * @property ComentariosNoticias[] $comentariosNoticias
+ * @property Meneos[] $meneos
  * @property User $idUsuario
  */
 class Noticia extends \yii\db\ActiveRecord
 {
     public $categorias;
     /**
-     * tableName funcion estatica
-     * @return tabla devuelve la tabla noticias
+     * @inheritdoc
      */
     public static function tableName()
     {
@@ -32,15 +31,13 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * [rules reglas de validacion del modelo]
-     * @return array el array contiene que validacion tiene cada campo
+     * @inheritdoc
      */
     public function rules()
     {
         return [
             [['id_usuario', 'id_categoria'], 'integer'],
             [['titulo', 'cuerpo', 'url'], 'required'],
-            [['meneos'], 'number'],
             [['created_at'], 'safe'],
             [['titulo'], 'string', 'max' => 55],
             [['cuerpo'], 'string', 'max' => 500],
@@ -50,8 +47,7 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * attributeLabels asigna una cadena a cada atributo para mostrarse]
-     * @return array a atributos se le asigna una cadena
+     * @inheritdoc
      */
     public function attributeLabels()
     {
@@ -60,18 +56,14 @@ class Noticia extends \yii\db\ActiveRecord
             'id_usuario' => 'Id Usuario',
             'titulo' => 'Titulo',
             'cuerpo' => 'Cuerpo',
-            'meneos' => 'Meneos',
             'url' => 'Url',
-            'id_categoria' => 'Categoría',
+            'id_categoria' => 'Id Categoria',
             'created_at' => 'Created At',
         ];
     }
 
     /**
-     *Devuelve una tabla con los comentarios relacionados con
-     * la noticia(id_noticia)
-     * @return yii\db\ActiveQuery devuelve una tabla con los comentarios
-     * relacionados con la noticia(id_noticia)
+     * @return \yii\db\ActiveQuery
      */
     public function getComentariosNoticias()
     {
@@ -79,22 +71,33 @@ class Noticia extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve el usuario usando id
-     * @return yii\db\ActiveQuery objeto usuario o null
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMeneos()
+    {
+        return $this->hasMany(Meneo::className(), ['id_noticia' => 'id_noticia'])->inverseOf('noticia');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNumeroMeneos()
+    {
+        return $this->hasMany(Meneo::className(), ['id_noticia' => 'id_noticia'])->count();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
      */
     public function getUsuario()
     {
         return $this->hasOne(User::className(), ['id' => 'id_usuario'])->inverseOf('noticias');
     }
 
-    /**
-     *
-     */
     public function getCategoria()
     {
         return $this->hasOne(Categoria::className(), ['id_categoria' => 'id_categoria'])->inverseOf('noticias');
     }
-
     /**
      * Esta funcion se ejecuta antes guardar la noticia
      * @param  [type] $insert [description]

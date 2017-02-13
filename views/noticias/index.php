@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_usuario',
             'titulo',
             'cuerpo',
-            'meneos',
             // 'url:url',
             // 'created_at',
 

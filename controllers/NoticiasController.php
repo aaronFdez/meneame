@@ -11,6 +11,7 @@ use Yii;
 use app\models\Noticia;
 use app\models\Categoria;
 use app\models\NoticiaSearch;
+use app\models\Meneo;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,6 +35,7 @@ class NoticiasController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'meneos' => ['POST'],
                 ],
             ],
             'access' => [
@@ -41,7 +43,7 @@ class NoticiasController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'view'],
+                        'actions' => ['create', 'update', 'view', 'meneos'],
                         'roles' => ['@'],
                     ],
                     [
@@ -51,7 +53,7 @@ class NoticiasController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'meneos'],
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->user->identity->isAdmin;
@@ -154,6 +156,26 @@ class NoticiasController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionMeneos()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/site/login']);
+        }
+
+        $noticia = $this->findModel(Yii::$app->request->post('id'));
+
+        $model = new Meneo;
+        $model->id_noticia = $noticia->id_noticia;
+        $model->id_usuario = Yii::$app->user->identity->id;
+
+        if (!Meneo::findOne(['id_noticia' => $model->id_noticia, 'id_usuario' => $model->id_usuario])) {
+            $model->save();
+            return $noticia->numeroMeneos;
+        } else {
+            return $noticia->numeroMeneos;
         }
     }
 }

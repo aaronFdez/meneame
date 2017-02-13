@@ -7,7 +7,6 @@ create table noticias (
                                 on delete no action on update cascade,
     titulo        varchar(55)   not null,
     cuerpo        varchar(500)  not null,
-    meneos        numeric(6)    default 0,
     url           varchar(200)  not null,
     id_categoria  bigint        constraint fk_noticias_categorias_categoria
                                 references categorias (id_categoria)
@@ -53,3 +52,15 @@ create table comentarios_noticias (
                                       references noticias (id_noticia)
                                       on delete no action on update cascade
 );
+
+drop table if exists meneos cascade;
+
+create table meneos (
+    id_meneo       bigserial constraint pk_meneos primary key,
+    id_usuario     bigint    constraint fk_meneos_usuarios
+                             references public.user (id)
+                             on delete no action on update cascade,
+    id_noticia     bigint    constraint fk_meneos_noticias
+                             references noticias (id_noticia)
+                             on delete no action on update cascade
+)
