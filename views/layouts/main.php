@@ -42,7 +42,7 @@ AppAsset::register($this);
             width: 100%;
         }
 
-        .nav-pills li a {
+        .categorias li a {
             color: white;
         }
 

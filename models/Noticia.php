@@ -37,7 +37,7 @@ class Noticia extends \yii\db\ActiveRecord
     {
         return [
             [['id_usuario', 'id_categoria'], 'integer'],
-            [['titulo', 'cuerpo', 'url'], 'required'],
+            [['titulo', 'cuerpo', 'url', 'id_categoria'], 'required'],
             [['created_at'], 'safe'],
             [['titulo'], 'string', 'max' => 55],
             [['cuerpo'], 'string', 'max' => 500],

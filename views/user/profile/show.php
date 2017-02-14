@@ -16,7 +16,7 @@ use yii\helpers\Html;
  * @var \dektrium\user\models\Profile $profile
  */
 
-$this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
+$this->title = empty($profile->name) ? '' : Html::encode($profile->name);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -29,6 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
             </div>
             <div class="col-sm-6 col-md-8">
+                <h3><?= Html::a($profile->user->username, ['/user/profile/show', 'id' => $profile->user->id],
+                ['class' => 'profile-link']) ?></h3>
                 <h4><?= $this->title ?></h4>
                 <ul style="padding: 0; list-style: none outside none;">
                     <?php if (!empty($profile->location)): ?>
